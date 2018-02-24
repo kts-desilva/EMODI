@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+    <title>GTmetrix Analyzer</title>
+    <link rel="stylesheet" href="main.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="booth">
+        <video id="video" width="400" height="300"></video>
+        <a href="#" id="capture" class="booth-capture-button">Take Photo</a>
+        <canvas id="canvas" width="400" height="300"></canvas>
+        <img id="photo" name="exo.png" src="http://placekitten.com/g/400/300" alt="Photo of you">
+        <a href="#" id="send" class="booth-capture-button">Send Photo</a>
+        <a class="post" href="#" id="upload" class="booth-capture-button">Upload Photo</a>
+        <a href="#" id="tabs" class="booth-capture-button">Tab detail</a>
+        <button data-toggle="modal" data-target="#resultModal">Click me</button>
+    </div>
+
+    <div class="hidden">
+        <p>Posting to imgur...</p>
+    </div>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="photo.js"></script>
+
+    <script>
+        var link="";
+        document.getElementById('upload').addEventListener('click',function () {
+            alert("ck");
+            var extractToken = function(hash) {
+                var match = hash.match(/access_token=(\w+)/);
+                return !!match && match[1];
+            };
+
+            var $post = $('.post');
+            var $msg = $('.hidden');
+            var $img = $('img');
+
+            $post.click(function() {
+                localStorage.doUpload = true;
+                localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
+            });
+
+            //var loc=document.getElementById('test').getAttribute('src');
+            var token = 'de3b9ffc7adba2a';
+            if (token && JSON.parse(localStorage.doUpload)) {
+                localStorage.doUpload = false;
+                $post.hide();
+                $msg.show();
+
+                $.ajax({
+                    url: 'https://api.imgur.com/3/image',
+                    method: 'POST',
+                    headers: {
+                        Authorization: 'Client-ID ' + token,
+                        Accept: 'application/json'
+                    },
+                    data: {
+                        image: localStorage.imageBase64,
+                        type: 'base64'
+                    },
+                    success: function(result) {
+                        var id = result.data.id;
+                        alert('https://imgur.com/gallery/' + id);
+                        link='https://i.imgur.com/' + id+".png";
+                        //window.location = 'https://imgur.com/gallery/' + id;
+                    }
+                });
+            }
+        });
+        $(function () {
+            var extractToken = function(hash) {
+                var match = hash.match(/access_token=(\w+)/);
+                return !!match && match[1];
+            };
+
+            var $post = $('.post');
+            var $msg = $('.hidden');
+            var $img = $('img');
+
+            $post.click(function() {
+                localStorage.doUpload = true;
+                localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
+            });
+
+            //var loc=document.getElementById('test').getAttribute('src');
+            var token = 'de3b9ffc7adba2a';
+            if (token && JSON.parse(localStorage.doUpload)) {
+                localStorage.doUpload = false;
+                $post.hide();
+                $msg.show();
+
+                $.ajax({
+                    url: 'https://api.imgur.com/3/image',
+                    method: 'POST',
+                    headers: {
+                        Authorization: 'Client-ID ' + token,
+                        Accept: 'application/json'
+                    },
+                    data: {
+                        image: localStorage.imageBase64,
+                        type: 'base64'
+                    },
+                    success: function(result) {
+                        var id = result.data.id;
+                        alert('https://imgur.com/gallery/' + id);
+                        link='https://i.imgur.com/' + id+".png";
+                        //window.location = 'https://imgur.com/gallery/' + id;
+                    }
+                });
+            }
+        });
+
+
+        document.getElementById('send').addEventListener('click',function () {
+            var params = {
+                // Request parameters
+            };
+
+            alert(link);
+
+            $.ajax({
+                url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?" + $.param(params),
+                beforeSend: function (xhrObj) {
+                    // Request headers
+                    xhrObj.setRequestHeader("Content-Type", "application/json");
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "447cf40e51584c6db432084486780e45");
+                },
+                type: "POST",
+                // Request body
+                data: JSON.stringify({
+                    "url":link
+                }),
+            })
+                .done(function (data) {
+                    console.log(data[0]["scores"]["anger"]);
+                    console.log(data[0]["scores"]);
+                    //alert(data);
+                    var mm = data[0]["scores"]["anger"];
+                    mood = "anger";
+                    for (m in data[0]["scores"]) {
+                        if (mm < data[0]["scores"][m]) {
+                            mm = data[0]["scores"][m];
+                            mood = m;
+                        }
+                    }
+                    alert(mood);
+                })
+                .fail(function () {
+                    alert("error");
+                });
+        });
+
+       
+    </script>
+
+</body>
+</html>

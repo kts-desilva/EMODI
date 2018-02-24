@@ -1,0 +1,286 @@
+.semi-transparent-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    max-width: 500px;
+    background: #fff; /* fallback color for old browsers */background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+  .black-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    background: rgb(187, 179, 179); /* fallback color for old browsers */background: rgba(187, 179, 179);
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+  .blue-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    max-width: 550px;
+    background: rgb(171, 219, 252); /* fallback color for old browsers */background: rgb(171, 219, 252);
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+.description{
+        font-family: "Segoe UI";
+        color: rgb(194, 126, 126);
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 20px;    
+}
+
+.title_description{
+    font-family: "Segoe UI";
+    font-size: 30px;
+    color: #272222;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;  
+    text-align:   center;
+}
+
+#me p{
+  color: rgb(211, 87, 87);
+}
+
+.title_small{
+    font-family: "Segoe UI";
+    font-size: 15px;    
+    padding-left: 65px;
+    padding-bottom: 15px;
+    line-height: 20px;  
+    text-align:   left;
+}
+
+.title_medium{
+  font-family: "Segoe UI";
+  font-size: 16px;    
+  padding-left: 20px;
+  padding-bottom: 15px;
+  line-height: 32px;  
+  text-align:   center;
+}
+
+.warning_text{
+  color: rgb(211, 87, 87);
+}
+
+.title_title{
+    font-family: "Coronetscript";
+    font-size: 35px;
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;  
+    text-align:   center;
+}
+
+
+
+.iwt{
+    display:block;
+}
+
+input, select, textarea{
+    color: #ff0000;
+}
+
+[type=text] {
+    display: block;
+    margin: 0 auto;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    background: rgb(5, 5, 5); /* fallback color for old browsers */background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: rgb(5, 5, 5);
+    text-align: left;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+[type='text']:focus {
+    outline: none;
+    border-color: #53CACE;
+  }
+
+
+  [type=password] {
+    display: block;
+    margin: 0 auto;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 8px;
+    width: 100%;
+    max-width: 300px;
+    background: rgb(5, 5, 5); /* fallback color for old browsers */background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: rgb(5, 5, 5);
+    text-align: left;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+[type='password']:focus {
+    outline: none;
+    border-color: #53CACE;
+  }
+
+
+  .round .round-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .round .round-image img {
+    border-radius: 70%;
+    background-clip: padding-box;
+    position: relative;
+    z-index: -1;
+    height: 220px;
+  }
+
+  .card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+  
+  .card {
+    margin-top: 10px;
+    width: 450px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-clip: padding-box;
+    background-color: #fff;
+
+    
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin-left: -350px;
+    margin-top: 80px;
+  }
+
+  .card span.card-title {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 300;
+      text-transform: uppercase;
+  }
+  
+  .card .card-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .card .card-image img {
+    border-radius: 2px 2px 0 0;
+    background-clip: padding-box;
+    position: relative;
+    z-index: -1;
+  }
+  .card .card-image span.card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+  }
+  .card .card-content {
+    padding: 16px;
+    border-radius: 0 0 2px 2px;
+    background-clip: padding-box;
+    box-sizing: border-box;
+  }
+  .card .card-content p {
+    margin: 0;
+    color: inherit;
+  }
+  .card .card-content span.card-title {
+    line-height: 48px;
+  }
+  .card .card-action {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 16px;
+  }
+  .card .card-action a {
+    color: #ffab40;
+    margin-right: 16px;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+  }
+  .card .card-action a:hover {
+    color: #ffd8a6;
+    text-decoration: none;
+  }
+
+
+/*
+  .two{
+    background-color: #34ADFF;
+    background-image: -webkit-linear-gradient(150deg, #34ADFF 45%, #4CBFFF 45%);
+    height: 100%;
+    min-height: 900px;
+  }*/
+
+  .two{
+    background-color: rgb(218, 233, 247);
+    background-image: -webkit-linear-gradient(150deg, rgb(168, 207, 233) 45%, rgb(68, 100, 201) 45%);
+    height: 100%;
+    min-height: 900px;
+  }
+
+  .liner{
+    background-color: rgb(40, 49, 54);
+    background-image: -webkit-linear-gradient(150deg, rgb(40, 49, 54) 90%, rgb(40, 49, 54) 90%);
+    min-height: 30px;
+  }
+
+  .card.card-content:after {
+    background: linear-gradient(-90deg, #ffffff 16px, transparent 0), linear-gradient(0deg, #ffffff 16px, transparent 0);
+    background-position: left-bottom;
+    background-repeat: repeat-x;
+    background-size: 32px 32px;
+    content: " ";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 32px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

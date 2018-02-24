@@ -1,0 +1,60 @@
+.semi-transparent-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+    background: #fff; /* fallback color for old browsers */background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+.description{
+        font-family: "Segoe UI";
+        color: #fff;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 20px;    
+}
+
+.title_description{
+    font-family: "Segoe UI";
+    font-size: 24px;
+    color: #fff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;    
+}
+
+.iwt{
+    display:block;
+}
+
+[type=text] {
+    display: block;
+    margin: 0 auto;
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+    background: #fff; /* fallback color for old browsers */background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+  }
+
+[type='text']:focus {
+    outline: none;
+    border-color: #53CACE;
+  }

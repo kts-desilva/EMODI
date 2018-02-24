@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Emotion Dairy : Login</title>
+    <link rel="icon" type="image/icon" href="assets/images/tabicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i|Josefin+Sans:700" rel="stylesheet">
+    <link href="assets/css/comain.css" rel="stylesheet">
+    <link href="assets/css/mycocss.css" rel="stylesheet">
+    <link rel="icon" href="assets/images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+        .card {
+            margin-top: 10px;
+            width: 450px;
+            box-sizing: border-box;
+            border-radius: 2px;
+            background-clip: padding-box;
+            background-color: #fff;
+
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: 50px;
+            margin-top: 250px;
+        }
+
+        .two{
+            background-color: #34ADFF;
+            background-image: -webkit-linear-gradient(150deg, #34ADFF 45%, #4CBFFF 35%);
+            height: 100%;
+            min-height: 450px;
+        }
+    </style>
+
+</head>
+
+<body id="bb" style="background-color: #dce68b">
+    <div class="container">
+        <div class="row">
+            <!-- Card Projects -->
+            <div class="center col-md-6 col-md-offset-3">
+                <div class="card animated slideInLeft" id="mainCard">
+                    <div class="card-content" id="cardInfo">
+                        <p class="title_description">Login</p>
+                        <form>
+                            <br>
+                            <input type='text' placeholder='Username:' id='username' onfocus="clear(this)" required /><br>
+                            <input type='password' placeholder='Password:' id='psw' required/><br>
+                            <div id="me">
+                                
+                            </div>
+                            
+                        </form>    
+                        <a class="black-button" href="#" onclick="return ef();">Sign up</a><br> 
+                    </div>
+                    
+                    
+                    <!--img class="card-image" src="assets/images/seaside-day-preview.jpg" width="450" height="250"-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="two">
+        <br><br><br>
+        <center><img src="assets/images/151918638096093397.png"></center>
+    </div>
+    
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" language="javascript">
+    function ef(){
+        var username=document.getElementById("username").value;
+        var password=document.getElementById("psw").value;
+
+        if(username==="" || password===""){
+            document.getElementById('me').innerHTML="<p class='title_small warning_text'>Please enter your details.<br> We are exited to know about you !!</p>";  
+        }else{
+            validateUser(username,password);
+        }
+
+    }
+
+    function clear(x){
+        alert('exo');
+        document.getElementById('me').innerHTML="";
+    }
+
+    function validateUser(username,psw){
+        var myData = {"action": "login", "username": username};
+        $.ajax({
+            url: "http://localhost/ExampleEX/PHP/user.php",
+            type: "POST",
+            data: myData,
+            success: function (res) {
+                //alert(res+" "+(res=='true'));
+                if(res!='false'){
+                    if(res===psw){
+                        sessionStorage.setItem("username",username);
+                        alert('Welcome !!');
+                        //window.location.href="http://localhost/light-bootstrap-dashboard-master/teacher_dashboard.html";
+                    }else{
+                        document.getElementById('me').innerHTML="<p class='title_small warning_text'>Username or password is incorrect. Please try again.</p>";
+                        document.getElementById("psw").value="";
+                        document.getElementById("username").value="";
+                    }
+                    
+                }
+            }
+        });
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+</script>
+</html>
