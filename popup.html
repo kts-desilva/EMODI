@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
     <title>GTmetrix Analyzer</title>
     <link rel="stylesheet" href="main.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -12,15 +12,16 @@
     </style>
 
 </head>
-<body>
+
+<body onload="setInterval('emotionAn()',120000)">
 
     <div class="booth">
         <video id="video" width="400" height="300"></video>
         <a href="#" id="capture" class="booth-capture-button">Take Photo</a>
         <canvas id="canvas" width="400" height="300"></canvas>
         <img id="photo" name="exo.png" src="http://placekitten.com/g/400/300" alt="Photo of you">
-        <a href="#" id="send" class="booth-capture-button">Send Photo</a>
-        <a class="post" href="#" id="upload" class="booth-capture-button"onclick="uploadFunc()">Upload Photo</a>
+        <a href="#" id="send" class="booth-capture-button" onclick="sendFunc()">Send Photo</a>
+        <a href="#" id="upload" class="booth-capture-button" onclick="uploadFunc()">Upload Photo</a>
         <a href="#" id="tabs" class="booth-capture-button">Tab detail</a>
         <button data-toggle="modal" data-target="#resultModal">Click me</button>
     </div>
@@ -34,13 +35,34 @@
     <script src="photo.js"></script>
 
     <script type="text/javascript">
-        function uploadFunc(){
-            alert("clicked");
+
+        var link = "";
+        var mood = "";
+
+        function emotionAn() {
+            console.log("called me");
+            captureFunc();
+            setTimeout(sendFunc, 60000);
+            uploadFunc();
+
         }
-        var link="";
-        document.getElementById('upload').addEventListener('click',function () {
+
+        function captureFunc() {
+            var video = document.getElementById('video'),
+                canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                photo = document.getElementById('photo'),
+                loc = "",
+                vendorUrl = window.URL || window.webkitURL;
+            context.drawImage(video, 0, 0, 400, 300);
+            photo.setAttribute('src', canvas.toDataURL('image/png'));
+            loc = photo.getAttribute('src');
+
+        }
+
+        function uploadFunc() {
             alert("ck");
-            var extractToken = function(hash) {
+            var extractToken = function (hash) {
                 var match = hash.match(/access_token=(\w+)/);
                 return !!match && match[1];
             };
@@ -49,38 +71,36 @@
             var $msg = $('.hidden');
             var $img = $('img');
 
-            $post.click(function() {
-                localStorage.doUpload = true;
-                localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
+            localStorage.doUpload = true;
+            localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
+
+            var token = 'de3b9ffc7adba2a';
+
+            localStorage.doUpload = false;
+            $post.hide();
+            $msg.show();
+
+            $.ajax({
+                url: 'https://api.imgur.com/3/image',
+                method: 'POST',
+                headers: {
+                    Authorization: 'Client-ID ' + token,
+                    Accept: 'application/json'
+                },
+                data: {
+                    image: localStorage.imageBase64,
+                    type: 'base64'
+                },
+                success: function (result) {
+                    var id = result.data.id;
+                    console.log('https://imgur.com/gallery/' + id);
+                    alert('https://imgur.com/gallery/' + id);
+                    link = 'https://i.imgur.com/' + id + ".png";
+                    //window.location = 'https://imgur.com/gallery/' + id;
+                }
             });
 
-            //var loc=document.getElementById('test').getAttribute('src');
-            var token = 'de3b9ffc7adba2a';
-            if (token && JSON.parse(localStorage.doUpload)) {
-                localStorage.doUpload = false;
-                $post.hide();
-                $msg.show();
-
-                $.ajax({
-                    url: 'https://api.imgur.com/3/image',
-                    method: 'POST',
-                    headers: {
-                        Authorization: 'Client-ID ' + token,
-                        Accept: 'application/json'
-                    },
-                    data: {
-                        image: localStorage.imageBase64,
-                        type: 'base64'
-                    },
-                    success: function(result) {
-                        var id = result.data.id;
-                        alert('https://imgur.com/gallery/' + id);
-                        link='https://i.imgur.com/' + id+".png";
-                        //window.location = 'https://imgur.com/gallery/' + id;
-                    }
-                });
-            }
-        });
+        }
         /*$(function () {
             var extractToken = function(hash) {
                 var match = hash.match(/access_token=(\w+)/);
@@ -125,11 +145,12 @@
         });
 
 */
-        document.getElementById('send').addEventListener('click',function () {
+        function sendFunc() {
             var params = {
                 // Request parameters
             };
 
+            console.log("Emotion : " + link);
             alert(link);
 
             $.ajax({
@@ -137,12 +158,12 @@
                 beforeSend: function (xhrObj) {
                     // Request headers
                     xhrObj.setRequestHeader("Content-Type", "application/json");
-                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "447cf40e51584c6db432084486780e45");
+                    xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "7ccdbdf92f2a4e17af8a17c0656fdcb5");
                 },
                 type: "POST",
                 // Request body
                 data: JSON.stringify({
-                    "url":link
+                    "url": link
                 }),
             })
                 .done(function (data) {
@@ -162,10 +183,49 @@
                 .fail(function () {
                     alert("error");
                 });
-        });
 
-       
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+
+            var tdate = mm + '/' + dd + '/' + yyyy;
+
+            var hh=today.getHours();
+            var mm=today.getMinutes();
+            var ttime=hh+":"+mm;
+            var uid=localStorage.getItem("uid");
+            var txt_emotion=localStorage.getItem("txt_emotion");
+
+            var myData = { "action": "addData", "edate": tdate, "etime": ttime, "txt_emotion": txt_emotion, "img_emotion": mood, "uid": uid };
+            
+
+            $.ajax({
+                url: "http://localhost/EMODI/EMODI/PHP/emotion.php",
+                type: "POST",
+                data: myData,
+                success: function (res) {
+                    alert(res + " " + (res == 'true'));
+                    if (res === 'true') {
+                        console.log("Successfully added ..");
+                    }
+                }
+            });
+
+        }
+
+
+
     </script>
 
 </body>
+
 </html>

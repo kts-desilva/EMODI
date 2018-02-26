@@ -15,6 +15,10 @@
     transition: all 0.3s ease-out;
   }
 
+  .black{
+      color: rgb(36, 33, 33);
+  }
+
 .description{
         font-family: "Segoe UI";
         color: #fff;
@@ -30,6 +34,12 @@
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;    
+}
+
+.liner{
+    background-color: rgba(135, 156, 220,0.9);
+    background-image: -webkit-linear-gradient(150deg, rgb(40, 49, 54) 90%, rgb(40, 49, 54) 90%);
+    min-height: 30px;
 }
 
 .iwt{
@@ -58,3 +68,5 @@
     outline: none;
     border-color: #53CACE;
   }
+
+  

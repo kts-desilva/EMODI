@@ -2,16 +2,18 @@
 
 require_once 'dbConnection.php';
 
-function registration(){
-    $username=$_POST['username'];
-    $psw=$_POST['psw'];
-    $email=$_POST['email'];
+function addData(){
+    $edate=$_POST['edate'];
+    $etime=$_POST['etime'];
+    $txt_emotion=$_POST['txt_emotion'];
+    $img_emotion=$_POST['img_emotion'];
+    $uid=$_POST['uid'];
 
     /*$username='jia';
     $psw='123';
     $email='jia@gmail.com';*/
 
-    $sql = "INSERT INTO user (username,password,email) VALUES ('$username' , '$psw' , '$email')";
+    $sql = "INSERT INTO emotion (edate,etime,txt_emotion,img_emotion,uid) VALUES ('$edate' ,'$etime','$txt_emotion', '$img_emotion' , '$uid')";
     $rst = mysql_query($sql);
 
     if($rst){
@@ -29,12 +31,12 @@ function login(){
     $psw='123';
     $email='jia@gmail.com';*/
 
-    $sql = "select password,uid from user where username= '$username'";
+    $sql = "select password from user where username= '$username'";
     $rst = mysql_query($sql);
 
     if($rst){
         $row = mysql_fetch_array($rst);
-        echo "$row[password]"."|"."$row[uid]";
+        echo "$row[password]";
     }else{
         echo 'false';
     }
@@ -43,8 +45,8 @@ function login(){
 $action = $_POST['action'];
 //$action ='signup';
 
-if($action=='signup'){
-    registration();
+if($action=='addData'){
+    addData();
 }else if($action=='login'){
     login();
 }

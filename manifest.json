@@ -12,13 +12,15 @@
     }
   ],
   "browser_action": {
-    "default_icon": "logo.png",
+    "default_icon": "151918638096093397.png",
     "default_popup":"ipopup.html"
   },
   "background": {
     "scripts": ["background.js","jquery.min.js"]
   },
   "permissions":
-   ["tabs","alarms","storage", "notifications","http://localhost:63342/SampleExtension/popup.html?_ijt=gaojbag85udentcihgp2nivf4k#"]
+   ["activeTab","tabs","alarms","storage", "notifications","http://localhost/EMODI/EMODI/login.html"]
+,
+   "web_accessible_resources": ["lg.png","http://localhost/EMODI/EMODI/login.html"]
   
 }

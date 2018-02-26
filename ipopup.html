@@ -19,48 +19,30 @@
     <link rel="icon" href="assets/images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     
 </head>
 
-<body id="bb" style="background-color: #dce68b">
+<body id="bb">
     <div id="index">
         <div class="container">
             <br>
             <p class="title_description">Sign in</p>
             <form>
-                <input type='text' placeholder='Username:'  /><br>
-                <input type='text' placeholder='Password:'  /><br>
-                <a class="semi-transparent-button" onclick="ef()" href="spopup.html">Sign in</a><br> 
+                <input type='text' placeholder='Username:'  id='username'/><br>
+                <input type='text' placeholder='Password:'  id='psw' /><br>
+                <a href="http://localhost/EMODI/EMODI/login.html" class="semi-transparent-button" >Sign in</a><br> 
+                <div id="me">
             </form>    
             <p class="description">Don't have an account? Sign up here</p>
-            <a class="semi-transparent-button" href="#">Sign up</a><br> 
-            
-        </div>
-    </div>
-
-    <div id="index2">
-        <div class="container">
-            <br>
-            <span class="iwt">
-                <i class="material-icons"style="color: #fff;">attach_file</i>
-                <span class="description">You are having a great day sofar</span>
-                <span class="description">Need any help?</span>
-            </span>
-            
-            <br>
-            <a onClick="timeFunc()" class="semi-transparent-button" href="https://code.tutsplus.com/tutorials/how-to-implement-email-verification-for-new-members--net-3824">Timeline</a><br>
-            <a class="semi-transparent-button" href="#">Daily report</a><br>
-            <a class="semi-transparent-button" href="#">Monthly report</a><br>
-            <a class="semi-transparent-button" href="#">Weekly report</a><br>
+            <a class="semi-transparent-button" href="http://localhost/EMODI/EMODI/signup.html">Sign up</a><br> 
             
         </div>
     </div>
 
 </body>
 
-<script type="text/javascript">
-    function ef(){
-        console.log("Exo");
-    }
-</script>
+<script src="popup.js"></script>
+
+
 </html>

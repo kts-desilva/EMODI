@@ -108,16 +108,17 @@
     function validateUser(username,psw){
         var myData = {"action": "login", "username": username};
         $.ajax({
-            url: "http://localhost/ExampleEX/PHP/user.php",
+            url: "http://localhost/EMODI/EMODI/PHP/user.php",
             type: "POST",
             data: myData,
             success: function (res) {
                 //alert(res+" "+(res=='true'));
                 if(res!='false'){
-                    if(res===psw){
-                        sessionStorage.setItem("username",username);
+                    var ar=res.split("|");
+                    if(ar[0]===psw){
+                        localStorage.setItem("uid",ar[1]);
                         alert('Welcome !!');
-                        //window.location.href="http://localhost/light-bootstrap-dashboard-master/teacher_dashboard.html";
+                        window.location.href="http://localhost/EMODI/EMODI/home.html#";
                     }else{
                         document.getElementById('me').innerHTML="<p class='title_small warning_text'>Username or password is incorrect. Please try again.</p>";
                         document.getElementById("psw").value="";

@@ -84,7 +84,7 @@
   padding-left: 20px;
   padding-bottom: 15px;
   line-height: 32px;  
-  text-align:   center;
+  text-align:   left;
 }
 
 .warning_text{
@@ -176,7 +176,7 @@ input, select, textarea{
   }
   
   .card {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 450px;
     box-sizing: border-box;
     border-radius: 2px;
@@ -185,10 +185,10 @@ input, select, textarea{
 
     
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
-    margin-left: -350px;
-    margin-top: 80px;
+    margin-left: -325px;
+    margin-top: 10px;
   }
 
   .card span.card-title {
@@ -253,7 +253,7 @@ input, select, textarea{
 
   .two{
     background-color: rgb(218, 233, 247);
-    background-image: -webkit-linear-gradient(150deg, rgb(168, 207, 233) 45%, rgb(68, 100, 201) 45%);
+    background-image: -webkit-linear-gradient(-150deg, rgb(168, 207, 233) 45%, rgba(135, 156, 220,0.9) 45%);
     height: 100%;
     min-height: 900px;
   }
@@ -283,4 +283,8 @@ input, select, textarea{
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+
+.light_blue{
+  background-color: rgb(150, 211, 224);
 }

@@ -37,8 +37,12 @@
 			padding: 0.5em;
 			border: solid 1px rgba(255, 255, 255, 0.25);
             background-color: rgba(255, 255, 255, 0.075);
-            width: 185px;
-            height: 200px;
+            /*width: 185px;
+            height: 200px;*/
+
+            width: 120px;
+            height: 140px;
+            position: right ; right: 0;
 		}
 
     </style>
@@ -46,35 +50,14 @@
 </head>
 
 <body class='two'>
-
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
-            </div>
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                <li><a href="#">Page 1-1</a></li>
-                <li><a href="#">Page 1-2</a></li>
-                <li><a href="#">Page 1-3</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
-            </ul>
-        </div>
-    </nav>
-       
-<br>
-        <div class="container" style="text-align:center">
+    <br>
+        <div class="container">
             <div class="row">
                 <div class="column" style="position: relative;">
                     <span class="avatar"><img src="assets/images/home.jpg" ></span>
                     <!--img src="assets/images/home.jpg" style="width:180px; border-radius: 70%; height: 200px; border:10px solid rgb(250, 248, 248);"-->
         
-                    <img src="assets/images/151918638096093397.png" style="position: absolute; left: 0; padding-top: 15px; margin-left: -150px; height:180px">
+                    <img src="assets/images/151918638096093397.png" style="padding-top: 10px;height:160px; margin: 0 0 2em 0;  margin-left:350px; ">
         
                 </div>
             </div>
@@ -84,21 +67,10 @@
             <div class="row">
                 <!-- Card Projects -->
                 <div class="col-md-3 col-md-offset-3">
-                    <div class="card animated slideInLeft" style="width: 650px;margin-left: -550px;">
+                    <div class="card animated slideInLeft" style="width: 650px;margin-left: -450px;">
                         <div class="card-content" id="cardInfo">
                             <p class="title_description">Daily Emotion Analysis</p>
-                            <form>
-                                <br>
-                                <input type='text' placeholder='Username:' id='username' required /><br>
-                                <input type='text' placeholder='Email:' id='email' required /><br>
-                                <input type='password' placeholder='Password:' id='psw' required/><br>
-                                <input type='password' placeholder='Verify password:' id='vpsw' /><br>
-                                <div id="me">
-                                    
-                                </div>
-                                
-                            </form>    
-                            <a class="black-button" href="#" onclick="return ef();">Sign up</a><br> 
+                            <canvas id="myChart" width="400" height="400"></canvas>
                         </div>
                         
                         <div class="liner"></div>
@@ -106,22 +78,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-md-offset-2">
-                    <div class="card animated slideInLeft" style="width: 650px;">
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="card animated slideInLeft" style="width: 450px; margin-left: -180px; background-color: rgba(240, 242, 247, 0.753);">
                         <div class="card-content" id="cardInfo2">
-                            <p class="title_description">Sign up</p>
-                            <form>
-                                <br>
-                                <input type='text' placeholder='Username:' id='username' required /><br>
-                                <input type='text' placeholder='Email:' id='email' required /><br>
-                                <input type='password' placeholder='Password:' id='psw' required/><br>
-                                <input type='password' placeholder='Verify password:' id='vpsw' /><br>
-                                <div id="me">
-                                    
-                                </div>
-                                
-                            </form>    
-                            <a class="black-button" href="#" onclick="return ef();">Sign up</a><br> 
+                            <p class="title_description">Insights</p><br>
+                            <p class="title_medium">You surely want to feel better.</p>
+                            <p class="title_medium">A recent trendy idea in English is not to indent the first paragraph, but indent those that follow. For example, Robert Bringhurst states that we should "Set opening paragraphs flush left."[2] Bringhurst explains as follows:</p>
+                        </div>
+                        
+                        <div class="liner"></div>
+                        <!--img class="card-image" src="assets/images/seaside-day-preview.jpg" width="450" height="250"-->
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="card animated slideInLeft" style="width: 450px; margin-left: 410px;margin-top:350px; background-color: rgba(240, 242, 247, 0.753);">
+                        <div class="card-content" id="cardInfo2">
+                            <p class="title_description">Insights</p><br>
+                            <p class="title_medium">You surely want to feel better.</p>
+                            <textarea rows="4" cols="63"></textarea>
                         </div>
                         
                         <div class="liner"></div>
@@ -134,8 +110,49 @@
         </div>  
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" language="javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/script.js"></script>
+<script src="assets/js/Chart.js"></script>
 
+
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
 </script>
 </html>
